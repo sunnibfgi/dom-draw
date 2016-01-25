@@ -109,6 +109,7 @@
 
   function drawEnd(e) {
     move && (move = false);
+    this.onmousemove = null;
   }
 
 })();
