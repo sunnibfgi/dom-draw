@@ -78,13 +78,13 @@
     diffX = pointX() - startX;
     diffY = pointY() - startY;
 
-    if (diffX)
+    if (diffX > 0)
       setStyle(el, {
         left: startX + 'px',
         width: diffX + 'px'
       });
 
-    if (diffY)
+    if (diffY > 0)
       setStyle(el, {
         top: startY + 'px',
         height: diffY + 'px'
