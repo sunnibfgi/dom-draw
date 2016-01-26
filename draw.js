@@ -84,7 +84,7 @@
         width: diffX + 'px'
       });
 
-    if (diffY)
+    if (diffY > 0)
       setStyle(el, {
         top: startY + 'px',
         height: diffY + 'px'
