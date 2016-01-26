@@ -1,8 +1,6 @@
-//test for mouse event operation
-
 (function() {
-
   'use strict';
+
   var startX;
   var startY;
   var move = false;
@@ -25,7 +23,8 @@
   }
 
   function setStyle(el, opts) {
-    if (el === undefined) return;
+    if (el === undefined)
+      return;
     for (var prop in opts) {
       if (opts.hasOwnProperty(prop)) {
         var props = camelize(prop);
@@ -53,10 +52,11 @@
 
   //event handler
   function drawStart(e) {
-    startX = pointX();
-    startY = pointY();
+
+    startX = pointX(e);
+    startY = pointY(e);
+
     if (e.button) return;
-      
     el && document.body.removeChild(el);
     if (!move) {
       move = true;
@@ -75,8 +75,8 @@
     var diffX, diffY, offsetLeft, offsetTop;
     if (!move) return;
 
-    diffX = pointX() - startX;
-    diffY = pointY() - startY;
+    diffX = pointX(e) - startX;
+    diffY = pointY(e) - startY;
 
     if (diffX > 0)
       setStyle(el, {
@@ -84,7 +84,7 @@
         width: diffX + 'px'
       });
 
-    if (diffY > 0)
+    if (diffY)
       setStyle(el, {
         top: startY + 'px',
         height: diffY + 'px'
@@ -105,11 +105,15 @@
         height: Math.abs(diffY) + 'px'
       });
     }
+
   }
 
   function drawEnd(e) {
+    //clean
     move && (move = false);
-    startX = startY = null;
+    startX = null;
+    startY = null;
+    drawStart = drawMove = drawEnd = null;
   }
 
 })();
