@@ -4,7 +4,8 @@
   var startX;
   var startY;
   var move = false;
-  var el = null;
+  var el = null,
+    Z = 10000;
 
   function pointX(e) {
     e = e || window.event;
@@ -39,6 +40,7 @@
 
   function rgb(opacity) {
     opacity = Math.min(100, opacity);
+
     if (!(0 in arguments)) {
       return 'rgb(' + (~~(Math.random() * 256)) + ',' + (~~(Math.random() * 256)) + ',' + (~~(Math.random() * 256)) + ')';
     }
@@ -62,6 +64,7 @@
       move = true;
       el = document.createElement('div');
       setStyle(el, {
+        'z-index': Z,
         position: 'absolute',
         top: startY + 'px',
         left: startX + 'px',
@@ -105,7 +108,7 @@
         height: Math.abs(diffY) + 'px'
       });
     }
-
+      
   }
 
   function drawEnd(e) {
