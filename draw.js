@@ -3,18 +3,19 @@
 
   var startX;
   var startY;
-  var move = false;
-  var el = null,
-    Z = 10000;
+  var move = false,
+    el = null,
+    Z = 10000,
+    body = document.body;
 
   function pointX(e) {
     e = e || window.event;
-    return e.pageX || e.clientX + document.body.scrollLeft;
+    return e.pageX || e.clientX + body.scrollLeft;
   }
 
   function pointY(e) {
     e = e || window.event;
-    return e.pageY || e.clientY + document.body.scrollTop;
+    return e.pageY || e.clientY + body.scrollTop;
   }
 
   function camelize(str) {
@@ -59,7 +60,7 @@
     startY = pointY(e);
 
     if (e.button) return;
-    el && document.body.removeChild(el);
+    el && body.removeChild(el);
     if (!move) {
       move = true;
       el = document.createElement('div');
@@ -71,7 +72,7 @@
         'background-color': rgb()
       });
     }
-    document.body.appendChild(el);
+    body.appendChild(el);
   }
 
   function drawMove(e) {
@@ -108,7 +109,7 @@
         height: Math.abs(diffY) + 'px'
       });
     }
-      
+
   }
 
   function drawEnd(e) {
